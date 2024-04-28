@@ -2171,7 +2171,7 @@ CASE( "issue-58" )
     EXPECT( !unexpected.has_value() );
 }
 
-#if nsel_P2505R >= 3
+#if nsel_P2505R >= 3 && !defined(__cpp_lib_invoke)
 CASE( "invoke" )
 {
     struct A {
@@ -2198,7 +2198,7 @@ CASE( "invoke" )
     EXPECT( nonstd::expected_lite::detail::invoke(&A::get2, ref, 'a') == 12 );
     EXPECT( nonstd::expected_lite::detail::invoke(&A::get2, cref, 'a') == 7 );
 }
-#endif // nsel_P2505R >= 3
+#endif // nsel_P2505R >= 3 && !defined(__cpp_lib_invoke)
 
 // -----------------------------------------------------------------------
 //  using as optional
